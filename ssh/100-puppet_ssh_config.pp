@@ -1,8 +1,8 @@
 file { '/etc/ssh/ssh_config':
-  ensure  => file,
-  owner   => 'root',
-  group   => 'root',
-  mode    => '0644',
+  ensure => file,
+  owner  => 'root',
+  group  => 'root',
+  mode   => '0644',
 }
 
 file_line { 'Declare identity file':
