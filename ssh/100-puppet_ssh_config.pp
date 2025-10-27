@@ -1,25 +1,20 @@
 # 100-puppet_ssh_config.pp
-# Puppet manifest to configure SSH client for passwordless login
+# Puppet manifest to configure SSH client for passwordless login using a private key
 
-# Ensure the SSH config file exists
-file { '/home/ubuntu/.ssh/config':
-  ensure => 'file',
-  owner  => 'ubuntu',
-  group  => 'ubuntu',
-  mode   => '0600',
+# Ensure the system-wide SSH client config file exists
+file { '/etc/ssh/ssh_config':
+  ensure => file,
 }
 
-# Set the identity file to ~/.ssh/school
+# Declare the identity file (private key)
 file_line { 'Declare identity file':
-  path  => '/home/ubuntu/.ssh/config',
+  path  => '/etc/ssh/ssh_config',
   line  => 'IdentityFile ~/.ssh/school',
-  match => '^IdentityFile',
 }
 
-# Disable password authentication
+# Turn off password authentication
 file_line { 'Turn off passwd auth':
-  path  => '/home/ubuntu/.ssh/config',
+  path  => '/etc/ssh/ssh_config',
   line  => 'PasswordAuthentication no',
-  match => '^PasswordAuthentication',
 }
 
