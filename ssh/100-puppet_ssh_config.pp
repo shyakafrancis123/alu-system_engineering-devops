@@ -1,3 +1,5 @@
+# This Puppet manifest configures the SSH client to use a specific identity file and disables password authentication
+
 file { '/etc/ssh/ssh_config':
   ensure => file,
   owner  => 'root',
