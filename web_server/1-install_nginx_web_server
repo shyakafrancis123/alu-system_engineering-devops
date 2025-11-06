@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 # Installs and configures Nginx to serve a page containing 'Holberton School'
 
-# Update package list and install nginx
 apt-get update -y
 apt-get install -y nginx
 
-# Make sure nginx is running
+# Ensure nginx listens on all interfaces
+sed -i 's/listen 80 default_server;/listen 80 default_server;\n\tlisten [::]:80 default_server;/g' /etc/nginx/sites-available/default
+
 service nginx start
 
-# Replace the default index page with the required content
+# Add the expected content
 echo "Holberton School" > /var/www/html/index.nginx-debian.html
 echo "Holberton School" > /var/www/html/index.html
 
-# Restart nginx to ensure changes are applied
 service nginx restart
 
