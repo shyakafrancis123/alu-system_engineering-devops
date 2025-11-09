@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
+# Install and configure Nginx to serve "Holberton School" on port 80
+
 apt-get update -y -qq
 apt-get install nginx -y -qq
-service nginx start
-echo "Holberton School" | tee /var/www/html/index.html > /dev/null
-service nginx restart
 
+service nginx start
+
+# Write the required content to the default nginx root index.html
+echo "Holberton School" | tee /var/www/html/index.html
+
+# Restart nginx to apply changes
+service nginx restart
